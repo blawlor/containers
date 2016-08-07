@@ -1,17 +1,17 @@
 ################################################################
 # Dockerfile
 #
-# Version:          3
+# Version:          3-bl
 # Software:         BioDocker base Image
 # Software Version: 06172016
 # Description:      Basic image for BioDocker
 # Website:          http://biodocker.org/
 # Tags:             Genomics|Proteomics|Transcriptomics|General|Metabolomics
-# Provides:         autotools-dev|automake|cmake|curl|fuse|git|wget|zip|openjdk-7-jre|build-essential|pkg-config|python|python-dev|python-pip|zlib1g-dev
+# Provides:         autotools-dev|automake|cmake|curl|fuse|git|wget|zip|openjdk-8-jre|build-essential|pkg-config|python|python-dev|python-pip|zlib1g-dev
 # Base Image:       ubuntu:16.10
-# Build Cmd:        docker build biodckr/biodocker .
-# Pull Cmd:         docker pull biodckr/biodocker
-# Run Cmd:          docker run biodckr/biodocker
+# Build Cmd:        docker build blawlor/biodocker .
+# Pull Cmd:         docker pull blawlor/biodocker
+# Run Cmd:          docker run blawlor/biodocker
 #################################################################
 
 # Source Image
