@@ -15,7 +15,7 @@
 #################################################################
 
 # Source Image
-FROM biodckr/biodocker
+FROM biodckr/biodocker:3-bl
 
 ################## BEGIN INSTALLATION ###########################
 

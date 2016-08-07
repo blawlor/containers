@@ -1,4 +1,4 @@
-#################################################################
+################################################################
 # Dockerfile
 #
 # Version:          3
@@ -8,14 +8,14 @@
 # Website:          http://biodocker.org/
 # Tags:             Genomics|Proteomics|Transcriptomics|General|Metabolomics
 # Provides:         autotools-dev|automake|cmake|curl|fuse|git|wget|zip|openjdk-7-jre|build-essential|pkg-config|python|python-dev|python-pip|zlib1g-dev
-# Base Image:       ubuntu:14.04.3
+# Base Image:       ubuntu:16.10
 # Build Cmd:        docker build biodckr/biodocker .
 # Pull Cmd:         docker pull biodckr/biodocker
 # Run Cmd:          docker run biodckr/biodocker
 #################################################################
 
 # Source Image
-FROM ubuntu:14.04.3
+FROM ubuntu:16.10
 
 # Set noninterative mode
 ENV DEBIAN_FRONTEND noninteractive
@@ -47,7 +47,7 @@ RUN apt-get clean all && \
         git             \
         wget            \
         zip             \
-        openjdk-7-jre   \
+        openjdk-8-jre   \
         build-essential \
         pkg-config      \
         python          \
@@ -82,7 +82,7 @@ RUN TINI_VERSION=`curl https://github.com/krallin/tini/releases/latest | grep -o
 RUN mkdir /data /config
 
 # Add user biodocker with password biodocker
-RUN useradd --create-home --shell /bin/bash --user-group --uid 1000 --groups sudo,fuse biodocker && \
+RUN useradd --create-home --shell /bin/bash --user-group --uid 1000 --groups sudo biodocker && \
     echo `echo "biodocker\nbiodocker\n" | passwd biodocker` && \
     chown biodocker:biodocker /data && \
     chown biodocker:biodocker /config
