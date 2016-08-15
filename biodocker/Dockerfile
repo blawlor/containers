@@ -51,7 +51,7 @@ RUN apt-get clean all && \
         build-essential \
         pkg-config      \
         python          \
-	      python-dev      \
+	python-dev      \
         python-pip      \
         bzip2           \
         ca-certificates \
@@ -77,6 +77,26 @@ RUN TINI_VERSION=`curl https://github.com/krallin/tini/releases/latest | grep -o
     dpkg -i tini.deb && \
     rm tini.deb && \
     apt-get clean
+
+
+# Install Scala
+
+ENV SCALA_VERSION 2.11.8
+ENV SBT_VERSION 0.13.12
+
+## Piping curl directly in tar
+RUN \
+  curl -fsL http://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz | tar xfz - -C /root/ && \
+  echo >> /root/.bashrc && \
+  echo 'export PATH=~/scala-$SCALA_VERSION/bin:$PATH' >> /root/.bashrc
+
+# Install sbt
+RUN  wget https://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb
+RUN  dpkg -i sbt-$SBT_VERSION.deb
+RUN  rm sbt-$SBT_VERSION.deb
+#RUN  apt-get update
+RUN  apt-get install sbt
+RUN  sbt sbtVersion
 
 # create shared folders
 RUN mkdir /data /config
